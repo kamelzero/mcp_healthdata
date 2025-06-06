@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+pandas
+xlrd
+openpyxl
+ipython
+pyarrow

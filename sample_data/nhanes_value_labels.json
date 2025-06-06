@@ -1,0 +1,1128 @@
+{
+  "MCQ010": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ035": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ040": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ050": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "AGQ030": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ053": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ149": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160a": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ195": {
+    "1": "Osteoarthritis or degenerative arthritis",
+    "2": "Rheumatoid arthritis",
+    "3": "Psoriatic arthritis",
+    "4": "Other",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160b": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160c": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160d": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160e": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160f": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160m": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ170m": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160p": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ160l": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ170l": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ500": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ510a": {
+    "1": "Fatty liver",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "MCQ510b": {
+    "2": "Liver fibrosis"
+  },
+  "MCQ510c": {
+    "3": "Liver cirrhosis"
+  },
+  "MCQ510d": {
+    "4": "Viral hepatitis"
+  },
+  "MCQ510e": {
+    "5": "Autoimmune hepatitis"
+  },
+  "MCQ510f": {
+    "6": "Other liver disease"
+  },
+  "MCQ550": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ560": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ220": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "MCQ230a": {
+    "10": "Bladder",
+    "11": "Blood",
+    "12": "Bone",
+    "13": "Brain",
+    "14": "Breast",
+    "15": "Cervix (cervical)",
+    "16": "Colon",
+    "17": "Esophagus (esophageal)",
+    "18": "Gallbladder",
+    "19": "Kidney",
+    "20": "Larynx/ windpipe",
+    "21": "Leukemia",
+    "22": "Liver",
+    "23": "Lung",
+    "24": "Lymphoma/ Hodgkin's disease",
+    "25": "Melanoma",
+    "26": "Mouth/tongue/lip",
+    "27": "Nervous system",
+    "28": "Ovary (ovarian)",
+    "29": "Pancreas (pancreatic)",
+    "30": "Prostate",
+    "31": "Rectum (rectal)",
+    "32": "Skin (non-melanoma)",
+    "33": "Skin (don't know what kind)",
+    "34": "Soft tissue (muscle or fat)",
+    "35": "Stomach",
+    "36": "Testis (testicular)",
+    "37": "Thyroid",
+    "38": "Uterus (uterine)",
+    "39": "Other",
+    "66": "More than 3 kinds",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "MCQ230b": {
+    "10": "Bladder",
+    "11": "Blood",
+    "12": "Bone",
+    "13": "Brain",
+    "14": "Breast",
+    "15": "Cervix (cervical)",
+    "16": "Colon",
+    "17": "Esophagus (esophageal)",
+    "18": "Gallbladder",
+    "19": "Kidney",
+    "20": "Larynx/ windpipe",
+    "21": "Leukemia",
+    "22": "Liver",
+    "23": "Lung",
+    "24": "Lymphoma/ Hodgkins disease",
+    "25": "Melanoma",
+    "26": "Mouth/tongue/lip",
+    "27": "Nervous system",
+    "28": "Ovary (ovarian)",
+    "29": "Pancreas (pancreatic)",
+    "30": "Prostate",
+    "31": "Rectum (rectal)",
+    "32": "Skin (non-melanoma)",
+    "33": "Skin (don't know what kind)",
+    "34": "Soft tissue (muscle or fat)",
+    "35": "Stomach",
+    "36": "Testis (testicular)",
+    "37": "Thyroid",
+    "38": "Uterus (uterine)",
+    "39": "Other",
+    "66": "More than 3 kinds",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "MCQ230c": {
+    "10": "Bladder",
+    "11": "Blood",
+    "12": "Bone",
+    "13": "Brain",
+    "14": "Breast",
+    "15": "Cervix (cervical)",
+    "16": "Colon",
+    "17": "Esophagus (esophageal)",
+    "18": "Gallbladder",
+    "19": "Kidney",
+    "20": "Larynx/ windpipe",
+    "21": "Leukemia",
+    "22": "Liver",
+    "23": "Lung",
+    "24": "Lymphoma/ Hodgkins disease",
+    "25": "Melanoma",
+    "26": "Mouth/tongue/lip",
+    "27": "Nervous system",
+    "28": "Ovary (ovarian)",
+    "29": "Pancreas (pancreatic)",
+    "30": "Prostate",
+    "31": "Rectum (rectal)",
+    "32": "Skin (non-melanoma)",
+    "33": "Skin (don't know what kind)",
+    "34": "Soft tissue (muscle or fat)",
+    "35": "Stomach",
+    "36": "Testis (testicular)",
+    "37": "Thyroid",
+    "38": "Uterus (uterine)",
+    "39": "Other",
+    "66": "More than 3 kinds",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "MCQ230d": {
+    "66": "More than 3 kinds",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "OSQ230": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "SMQ020": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "SMQ040": {
+    "1": "Every day",
+    "2": "Some days",
+    "3": "Not at all",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "SMD641": {
+    "0 to 30": "Range of Values",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "SMD650": {
+    "2 to 90": "Range of Values",
+    "1": "1 cigarette or less",
+    "95": "95 cigarettes or more",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "SMD100MN": {
+    "0": "Non-menthol",
+    "1": "Menthol",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "SMQ621": {
+    "1": "I have never smoked, not even a puff",
+    "2": "1 or more puffs but never a whole cigarette",
+    "3": "1 cigarette",
+    "4": "2 to 5 cigarettes",
+    "5": "6 to 15 cigarettes",
+    "6": "16 to 25 cigarettes",
+    "7": "26 to 99 cigarettes",
+    "8": "100 or more cigarettes",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "SMD630": {
+    "9 to 16": "Range of Values",
+    "6": "6 years or less",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "SMAQUEX2": {
+    "1": "Home Interview (18+ Yrs)",
+    "2": "ACASI (12 - 17 Yrs)"
+  },
+  "SMD460": {
+    "0": "No one in household is a smoker",
+    "1": "1 household member is a smoker",
+    "2": "2 or more household members are smokers",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "SMD470": {
+    "0": "No one smokes inside the house",
+    "1": "1 household member smokes inside the house",
+    "2": "2 or more household members smoke inside the house",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "ALQ111": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "ALQ121": {
+    "0": "Never in the last year",
+    "1": "Every day",
+    "2": "Nearly every day",
+    "3": "3 to 4 times a week",
+    "4": "2 times a week",
+    "5": "Once a week",
+    "6": "2 to 3 times a month",
+    "7": "Once a month",
+    "8": "7 to 11 times in the last year",
+    "9": "3 to 6 times in the last year",
+    "10": "1 to 2 times in the last year",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "ALQ130": {
+    "1 to 14": "Range of Values",
+    "15": "15 drinks or more",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "ALQ142": {
+    "0": "Never in the last year",
+    "1": "Every day",
+    "2": "Nearly every day",
+    "3": "3 to 4 times a week",
+    "4": "2 times a week",
+    "5": "Once a week",
+    "6": "2 to 3 times a month",
+    "7": "Once a month",
+    "8": "7 to 11 times in the last year",
+    "9": "3 to 6 times in the last year",
+    "10": "1 to 2 times in the last year",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "ALQ270": {
+    "0": "Never in the last year",
+    "1": "Every day",
+    "2": "Nearly every day",
+    "3": "3 to 4 times a week",
+    "4": "2 times a week",
+    "5": "Once a week",
+    "6": "2 to 3 times a month",
+    "7": "Once a month",
+    "8": "7 to 11 times in the last year",
+    "9": "3 to 6 times in the last year",
+    "10": "1 to 2 times in the last year",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "ALQ280": {
+    "0": "Never in the last year",
+    "1": "Every day",
+    "2": "Nearly every day",
+    "3": "3 to 4 times a week",
+    "4": "2 times a week",
+    "5": "Once a week",
+    "6": "2 to 3 times a month",
+    "7": "Once a month",
+    "8": "7 to 11 times in the last year",
+    "9": "3 to 6 times in the last year",
+    "10": "1 to 2 times in the last year",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "ALQ151": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "ALQ170": {
+    "0 to 20": "Range of Values",
+    "30": "More than 20 times",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "DIQ010": {
+    "1": "Yes",
+    "2": "No",
+    "3": "Borderline",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DID040": {
+    "1 to 79": "Range of Values",
+    "80": "80 years or older",
+    "666": "Less than 1 year",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "DIQ160": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DIQ180": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DIQ050": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DID060": {
+    "1 to 60": "Range of Values",
+    "666": "Less than 1 month",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "DIQ060U": {
+    "1": "Months",
+    "2": "Years"
+  },
+  "DIQ070": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "HIQ011": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "HIQ032A": {
+    "1": "Covered by private insurance",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "HIQ032B": {
+    "2": "Covered by Medicare"
+  },
+  "HIQ032C": {
+    "3": "Covered by Medi-Gap"
+  },
+  "HIQ032D": {
+    "4": "Covered by Medicaid"
+  },
+  "HIQ032E": {
+    "5": "Covered by CHIP"
+  },
+  "HIQ032F": {
+    "6": "Covered by military health care"
+  },
+  "HIQ032H": {
+    "8": "Covered by state-sponsored health plan"
+  },
+  "HIQ032I": {
+    "9": "Covered by other government insurance"
+  },
+  "HIQ210": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHQ010": {
+    "6 to 19": "Range of Values",
+    "0": "Hasn't started yet",
+    "20": "20 years or older",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "RHQ031": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHD043": {
+    "1": "Pregnancy",
+    "2": "Breast feeding",
+    "3": "Hysterectomy",
+    "7": "Menopause/Change of life",
+    "9": "Other",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "RHQ060": {
+    "20 to 59": "Range of Values",
+    "19": "19 years or under",
+    "60": "60 years or older",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "RHQ078": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHQ131": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHD143": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHD167": {
+    "0 to 4": "Range of Values",
+    "5": "5 or more",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "RHQ200": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHD280": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHQ305": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "RHQ332": {
+    "22 to 59": "Range of Values",
+    "19": "19 years or under",
+    "60": "60 years or older",
+    "777": "Refused",
+    "999": "Don't know"
+  },
+  "HOD051": {
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4",
+    "5": "5",
+    "6": "6",
+    "7": "7",
+    "8": "8",
+    "9": "9",
+    "10": "10",
+    "11": "11",
+    "12": "12 or more",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "SDDSRVYR": {
+    "12": "NHANES August 2021-August 2023 public release"
+  },
+  "RIDSTATR": {
+    "1": "Interviewed only",
+    "2": "Both interviewed and MEC examined"
+  },
+  "RIAGENDR": {
+    "1": "Male",
+    "2": "Female"
+  },
+  "RIDAGEYR": {
+    "0 to 79": "Range of Values",
+    "80": "80 years of age and over"
+  },
+  "RIDAGEMN": {
+    "0 to 24": "Range of Values"
+  },
+  "RIDRETH1": {
+    "1": "Mexican American",
+    "2": "Other Hispanic",
+    "3": "Non-Hispanic White",
+    "4": "Non-Hispanic Black",
+    "5": "Other Race - Including Multi-Racial"
+  },
+  "RIDRETH3": {
+    "1": "Mexican American",
+    "2": "Other Hispanic",
+    "3": "Non-Hispanic White",
+    "4": "Non-Hispanic Black",
+    "6": "Non-Hispanic Asian",
+    "7": "Other Race - Including Multi-Racial"
+  },
+  "RIDEXMON": {
+    "1": "November 1 through April 30",
+    "2": "May 1 through October 31"
+  },
+  "RIDEXAGM": {
+    "0 to 239": "Range of Values"
+  },
+  "DMQMILIZ": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DMDBORN4": {
+    "1": "Born in 50 US states or Washington,",
+    "2": "Others",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "DMDYRUSR": {
+    "1": "Less than 1 year",
+    "2": "1 to 4 years",
+    "3": "5 to 9 years",
+    "4": "10 to 14 years",
+    "5": "15 to 19 years",
+    "6": "20 years or more",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "DMDEDUC2": {
+    "1": "Less than 9th grade",
+    "2": "9-11th grade (Includes 12th grade with no diploma)",
+    "3": "High school graduate/GED or equivalent",
+    "4": "Some college or AA degree",
+    "5": "College graduate or above",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DMDMARTZ": {
+    "1": "Married/Living with partner",
+    "2": "Widowed/Divorced/Separated",
+    "3": "Never married",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "RIDEXPRG": {
+    "1": "Yes, positive lab pregnancy test or self-reported pregnant at exam",
+    "2": "The participant was not pregnant at exam",
+    "3": "Cannot ascertain if the participant is pregnant at exam"
+  },
+  "DMDHHSIZ": {
+    "1 to 6": "Range of Values",
+    "7": "7 or more people in the Household"
+  },
+  "DMDHRGND": {
+    "1": "Male",
+    "2": "Female"
+  },
+  "DMDHRAGZ": {
+    "1": "<20 years",
+    "2": "20-39 years",
+    "3": "40-59 years",
+    "4": "60+ years"
+  },
+  "DMDHREDZ": {
+    "1": "Less than high school degree",
+    "2": "High school grad/GED or some college/AA degree",
+    "3": "College graduate or above"
+  },
+  "DMDHRMAZ": {
+    "1": "Married/Living with partner",
+    "2": "Widowed/Divorced/Separated",
+    "3": "Never Married"
+  },
+  "DMDHSEDZ": {
+    "1": "Less than high school degree",
+    "2": "High school grad/GED or some college/AA degree",
+    "3": "College graduate or above"
+  },
+  "WTINT2YR": {
+    "4584.463196 to 170968.343177": "Range of Values"
+  },
+  "WTMEC2YR": {
+    "4581.595095 to 227108.296958": "Range of Values",
+    "0": "Not MEC Examined"
+  },
+  "SDMVSTRA": {
+    "173 to 187": "Range of Values"
+  },
+  "SDMVPSU": {
+    "1 to 2": "Range of Values"
+  },
+  "INDFMPIR": {
+    "0 to 4.99": "Range of Values",
+    "5": "Value greater than or equal to 5.00"
+  },
+  "DBQ010": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBD030": {
+    "1 to 1095": "Range of Values",
+    "0": "Still breastfeeding",
+    "666666": "More than 1095 days (3-year) old",
+    "777777": "Refused",
+    "999999": "Don't know"
+  },
+  "DBD041": {
+    "1 to 365": "Range of Values",
+    "0": "Never",
+    "666666": "More than 365 days (1-year) old",
+    "777777": "Refused",
+    "999999": "Don't know"
+  },
+  "DBD050": {
+    "2 to 1095": "Range of Values",
+    "0": "Still drinking formula",
+    "666666": "More than 1095 days (3-year) old",
+    "777777": "Refused",
+    "999999": "Don't know"
+  },
+  "DBD055": {
+    "1 to 730": "Range of Values",
+    "0": "Never",
+    "666666": "More than 730 days (2-year) old",
+    "777777": "Refused",
+    "999999": "Don't know"
+  },
+  "DBD061": {
+    "1 to 1095": "Range of Values",
+    "0": "Never",
+    "666666": "More than 1095 days (3-year) old",
+    "777777": "Refused",
+    "999999": "Don't know"
+  },
+  "DBQ073A": {
+    "10": "Whole or regular milk",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "DBQ073B": {
+    "11": "2% fat or reduced-fat milk"
+  },
+  "DBQ073C": {
+    "12": "1% fat or low-fat milk (includes 0.5% fat milk or low-fat milk not further specified),"
+  },
+  "DBQ073D": {
+    "13": "fat-free, skim or nonfat milk, or"
+  },
+  "DBQ073E": {
+    "14": "soy milk, or"
+  },
+  "DBQ073U": {
+    "30": "Another type?"
+  },
+  "DBQ301": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ330": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ360": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ370": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBD381": {
+    "1 to 5": "Range of Values",
+    "0": "None",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "DBQ390": {
+    "1": "Free",
+    "2": "Reduced price",
+    "3": "Full price",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ400": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBD411": {
+    "1 to 5": "Range of Values",
+    "0": "None",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "DBQ421": {
+    "1": "Free",
+    "2": "Reduced price",
+    "3": "Full price",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ424": {
+    "1": "Yes",
+    "2": "No",
+    "3": "Did not attend summer program",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ930": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ935": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ940": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DBQ945": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "HEQ010": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ010": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ020": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ030": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ040": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ050": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ060": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ070": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ080": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ090": {
+    "0": "Not at all",
+    "1": "Several days",
+    "2": "More than half the days",
+    "3": "Nearly every day",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "DPQ100": {
+    "0": "Not at all difficult",
+    "1": "Somewhat difficult",
+    "2": "Very difficult",
+    "3": "Extremely difficult",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "OCD150": {
+    "1": "Working at a job or business,",
+    "2": "With a job or business but not at work,",
+    "3": "Looking for work, or",
+    "4": "Not working at a job or business?",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "OCQ180": {
+    "6 to 78": "Range of Values",
+    "5": "1-5 Hours",
+    "80": "80 Hours or more",
+    "77777": "Refused",
+    "99999": "Don't know"
+  },
+  "OCQ210": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "OCQ215": {
+    "1 to 7": "Range of Values",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "OCQ383": {
+    "1": "Taking care of house or family",
+    "2": "Going to school",
+    "3": "Retired",
+    "4": "Unable to work for health reasons/Disabled",
+    "5": "Can't find work/On layoff",
+    "6": "Seasonal/Contract work",
+    "7": "Other",
+    "77": "Refused",
+    "99": "Don't know"
+  },
+  "PAD790Q": {
+    "0 to 180": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "PAD790U": {
+    "D": "Day",
+    "M": "Month",
+    "W": "Week",
+    "Y": "Year",
+    "< blank >": "Missing"
+  },
+  "PAD800": {
+    "1 to 720": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "PAD810Q": {
+    "0 to 200": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "PAD810U": {
+    "D": "Day",
+    "M": "Month",
+    "W": "Week",
+    "Y": "Year",
+    "< blank >": "Missing"
+  },
+  "PAD820": {
+    "1 to 900": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "PAD680": {
+    "0 to 1380": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "WHD010": {
+    "40 to 83": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "WHD020": {
+    "63 to 530": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "WHD050": {
+    "67 to 530": "Range of Values",
+    "7777": "Refused",
+    "9999": "Don't know"
+  },
+  "WHQ070": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ022": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ025": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ005": {
+    "1": "Never",
+    "2": "Less than once a month",
+    "3": "A few times a month",
+    "4": "A few times a week",
+    "5": "Every day and/or night",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ010": {
+    "1": "Drops",
+    "2": "Small splashes",
+    "3": "More",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ042": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ044": {
+    "1": "Yes",
+    "2": "No",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ052": {
+    "1": "Not at all",
+    "2": "Only a little",
+    "3": "Somewhat",
+    "4": "Very much",
+    "5": "Greatly",
+    "7": "Refused",
+    "9": "Don't know"
+  },
+  "KIQ481": {
+    "0": "0",
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4",
+    "5": "5 or more",
+    "7": "Refused",
+    "9": "Don't know"
+  }
+}
