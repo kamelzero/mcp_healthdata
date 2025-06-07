@@ -4,7 +4,7 @@ import sqlite3
 
 app = FastAPI()
 
-# CORS (important for Streamlit, Cursor, etc.)
+# CORS (important for LLMs and Streamlit)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -14,6 +14,34 @@ app.add_middleware(
 )
 
 DATABASE = 'copd_public_health.db'
+
+# Define granularity and units manually for known tables/columns
+TABLE_GRANULARITY = {
+    "state_air_quality": "state-level",
+    "places_health": "county-level",
+    "nhanes_survey": "individual-level",
+    "wonder_mortality": "state-level"
+}
+
+COLUMN_UNITS = {
+    "state_air_quality": {
+        "pm25_annual_mean": "µg/m³",
+        "year": "Year"
+    },
+    "places_health": {
+        "copd_prevalence": "%",
+        "smoking_prevalence": "%",
+        "obesity_prevalence": "%"
+    },
+    "nhanes_survey": {
+        "RIDAGEYR": "Years",
+    },
+    "wonder_mortality": {
+        "number_of_deaths": "Count",
+        "population": "Count",
+        "year": "Year"
+    }
+}
 
 def get_column_metadata(cursor, table_name):
     """Get metadata: name, type, sample values or min/max for each column."""
@@ -31,7 +59,11 @@ def get_column_metadata(cursor, table_name):
             "type": col_type,
         }
 
-        # Try to add sample values or min/max
+        # Add units if known
+        if table_name in COLUMN_UNITS and col_name in COLUMN_UNITS[table_name]:
+            col_meta["units"] = COLUMN_UNITS[table_name][col_name]
+
+        # Add sample values or min/max
         if "CHAR" in col_type or "TEXT" in col_type:
             # Sample 3 distinct values for TEXT columns
             cursor.execute(f"""
@@ -67,7 +99,6 @@ async def context():
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = cursor.fetchall()
 
-    # Build context response
     context = {"tables": []}
 
     for (table_name,) in tables:
@@ -76,6 +107,7 @@ async def context():
         table_meta = {
             "name": table_name,
             "description": f"Table {table_name} in the COPD public health database.",
+            "granularity": TABLE_GRANULARITY.get(table_name, "unknown"),
             "columns": columns
         }
 
