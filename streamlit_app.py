@@ -38,6 +38,22 @@ SELECT ... FROM ...;
 Do not explain anything outside the SQL block.
 """
 
+COMMENTARY_PROMPT_TEMPLATE = """
+You are a data analysis expert.
+
+Given the SQL query:
+```sql
+{sql}
+```
+
+And the following sample of the results:
+{sample}
+
+Please briefly comment on:
+- Whether the results look reasonable or unexpected.
+- Any improvements you suggest to the SQL query to better answer the question.
+"""
+
 def get_context():
     response = requests.post(f"{MCP_SERVER}/v1/context")
     return response.json()
@@ -93,6 +109,21 @@ def get_plot_labels(context, sql_query):
 
     return x_label.strip(), y_label.strip()
 
+def generate_commentary(sql_query, df_sample):
+    sample_text = df_sample.to_markdown(index=False)
+    prompt = COMMENTARY_PROMPT_TEMPLATE.format(sql=sql_query, sample=sample_text)
+
+    response = client.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant for commenting on SQL results."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.2
+    )
+
+    return response.choices[0].message.content.strip()
+
 # Streamlit UI
 st.title("MCP + LLM SQL Explorer")
 
@@ -101,30 +132,37 @@ user_question = st.text_input("Ask a question about your data:")
 if user_question:
     st.write("Generating SQL from your question...")
     context = get_context()
-    sql_query = generate_sql(context, user_question)
+    original_sql = generate_sql(context, user_question)
 
-    if st.checkbox("Show SQL Query"):
-        st.code(sql_query, language="sql")
+    # Editable SQL area
+    st.write("You can edit the SQL query before running:")
+    sql_query = st.text_area("SQL Query", original_sql, height=200)
 
-    st.write("Running query...")
-    result = query_mcp(sql_query)
+    if st.button("Run Query"):
+        st.write("Running query...")
+        result = query_mcp(sql_query)
 
-    if result.get('columns') and result.get('rows'):
-        df = pd.DataFrame(result['rows'], columns=result['columns'])
-        st.dataframe(df)
+        if result.get('columns') and result.get('rows'):
+            df = pd.DataFrame(result['rows'], columns=result['columns'])
+            st.dataframe(df)
 
-        # Plot if possible
-        if 'year' in df.columns and len(df.columns) > 1:
-            x_col = 'year'
-            y_col = [col for col in df.columns if col != 'year'][0]
+            # Plot if possible
+            if 'year' in df.columns and len(df.columns) > 1:
+                x_col = 'year'
+                y_col = [col for col in df.columns if col != 'year'][0]
 
-            fig, ax = plt.subplots()
-            ax.plot(df[x_col], df[y_col], marker='o')
-            xlabel, ylabel = get_plot_labels(context, sql_query)
-            ax.set_xlabel(xlabel)
-            ax.set_ylabel(ylabel)
-            ax.set_title(f"{ylabel} over {xlabel}")
-            ax.grid(True)
-            st.pyplot(fig)
-    else:
-        st.error("No results returned.")
+                fig, ax = plt.subplots()
+                ax.plot(df[x_col], df[y_col], marker='o')
+                xlabel, ylabel = get_plot_labels(context, sql_query)
+                ax.set_xlabel(xlabel)
+                ax.set_ylabel(ylabel)
+                ax.set_title(f"{ylabel} over {xlabel}")
+                ax.grid(True)
+                st.pyplot(fig)
+
+            # Show LLM commentary
+            st.write("### LLM Commentary on Results:")
+            commentary = generate_commentary(sql_query, df.head(5))
+            st.info(commentary)
+        else:
+            st.error("No results returned.")
