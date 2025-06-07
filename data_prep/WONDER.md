@@ -19,7 +19,7 @@ Section: “Group By”
             "IDC-10 113 Cause List",
             "Sex",
             "Single-Year Ages",
-            "Single/Multi Race 31"
+            "Single Race 6"
 
 
 Section: “Select Cause of Death”

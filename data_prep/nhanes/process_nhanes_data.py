@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 
-DATA_DIR = "nhanes_xpt_files"
-OUTFILE = "nhanes_2021-2023_copd.parquet"
+DATA_DIR = "../../data/nhanes/nhanes_xpt_files"
+OUTFILE = "../../data/nhanes/nhanes_2021-2023_copd.parquet"
 
 FILES = {
     "DEMO": "DEMO_L.xpt",

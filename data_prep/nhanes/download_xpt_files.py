@@ -10,7 +10,8 @@ BASE_URL_LIST = [
     "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Examination&Cycle=2021-2023",
     "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Laboratory&Cycle=2021-2023",
     "https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Questionnaire&Cycle=2021-2023"]
-DOWNLOAD_DIR = "nhanes_xpt_files"
+DOWNLOAD_DIR = "../../data/nhanes/nhanes_xpt_files"
+os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 def fetch_xpt_links(url):
     response = requests.get(url)

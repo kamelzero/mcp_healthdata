@@ -6,3 +6,7 @@ xlrd
 openpyxl
 ipython
 pyarrow
+requests
+beautifulsoup4
+tqdm
+selenium

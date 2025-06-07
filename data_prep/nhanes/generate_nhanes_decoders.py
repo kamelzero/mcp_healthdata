@@ -1,4 +1,4 @@
-import time
+import os
 import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -14,6 +14,9 @@ DATA_FILES = [
 ]
 
 BASE_URL = "https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/{file}.htm"
+
+DOWNLOAD_DIR = "../../data/nhanes/"
+os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 variable_labels = {}
 value_labels = {}
@@ -87,10 +90,10 @@ for file_code in DATA_FILES:
 driver.quit()
 
 # Save as JSON
-with open("nhanes_variable_labels.json", "w") as f:
+with open(os.path.join(DOWNLOAD_DIR, "nhanes_variable_labels.json"), "w") as f:
     json.dump(variable_labels, f, indent=2)
 
-with open("nhanes_value_labels.json", "w") as f:
+with open(os.path.join(DOWNLOAD_DIR, "nhanes_value_labels.json"), "w") as f:
     json.dump(value_labels, f, indent=2)
 
 print(f"✅ Done. Found {len(variable_labels)} variables, {len(value_labels)} with value mappings.")

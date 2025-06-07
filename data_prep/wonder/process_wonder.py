@@ -3,7 +3,10 @@ import glob
 import os
 
 # Get all data files
-files = glob.glob('*.xls*')
+data_dir = '../../data/wonder'
+os.makedirs(data_dir, exist_ok=True)
+
+files = glob.glob(os.path.join(data_dir, '*.xls*'))
 
 df_list = []
 for file in files:
@@ -46,7 +49,7 @@ for file in files:
             df = df.drop(columns=['Notes'])
         
         # Extract year from filename
-        year = file.split('-')[0]
+        year = os.path.basename(file).split('-')[0]
         df['Year'] = year
         
         # Remove any completely empty rows
@@ -70,7 +73,7 @@ if df_list:
     df_concat = pd.concat(df_list)
     
     # Save processed data
-    output_file = 'wonder_2018-2023.csv'
+    output_file = os.path.join(data_dir, 'wonder_2018-2023.csv')
     df_concat.to_csv(output_file, index=False)
     print(f"\nData saved to {output_file}")
     

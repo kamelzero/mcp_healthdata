@@ -25,30 +25,32 @@ CREATE TABLE nhanes_survey (
 
 cursor.execute("""
 CREATE TABLE wonder_mortality (
-    year INTEGER,                      -- Year
     state TEXT,                         -- State abbreviation
-    cause_of_death TEXT,                -- ICD-10 Cause
-    number_of_deaths INTEGER,           -- Number of deaths
-    population INTEGER,                 -- Population
-    PRIMARY KEY (state, year, cause_of_death)
+    year INTEGER,                       -- Year
+    sex TEXT,                          -- Gender
+    age TEXT,                          -- Age group
+    race TEXT,                         -- Race/ethnicity
+    cause_of_death TEXT,               -- ICD-10 Cause
+    number_of_deaths INTEGER,          -- Number of deaths
+    population INTEGER,                -- Population
+    PRIMARY KEY (state, year, sex, age, race, cause_of_death)
 )""")
 
 cursor.execute("""
 CREATE TABLE places_health (
     state TEXT,                         -- State abbreviation
     county_name TEXT,                   -- County name
-    fips_code TEXT PRIMARY KEY,          -- County FIPS
-    copd_prevalence FLOAT,               -- % COPD prevalence
-    smoking_prevalence FLOAT,            -- % smoking prevalence
-    obesity_prevalence FLOAT,            -- % obesity prevalence
-    median_income INTEGER     
+    fips_code TEXT PRIMARY KEY,         -- County FIPS
+    copd_prevalence FLOAT,              -- % COPD prevalence
+    smoking_prevalence FLOAT,           -- % smoking prevalence
+    obesity_prevalence FLOAT            -- % obesity prevalence
 )""")
 
 cursor.execute("""
 CREATE TABLE state_air_quality (
     state TEXT,                         -- State abbreviation
     year INTEGER,                       -- Year
-    pm25_annual_mean FLOAT,              -- Annual mean PM2.5
+    pm25_annual_mean FLOAT,             -- Annual mean PM2.5
     PRIMARY KEY (state, year)
 )""")
 
