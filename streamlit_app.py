@@ -38,6 +38,7 @@ SELECT ... FROM ...;
 Do not explain anything outside the SQL block.
 """
 
+# Commentary Prompt
 COMMENTARY_PROMPT_TEMPLATE = """
 You are a data analysis expert.
 
@@ -46,12 +47,12 @@ Given the SQL query:
 {sql}
 ```
 
-And the following sample of the results:
+And this sample of the results:
 {sample}
 
-Please briefly comment on:
-- Whether the results look reasonable or unexpected.
-- Any improvements you suggest to the SQL query to better answer the question.
+Briefly (2–3 sentences), comment on:
+- Whether the results seem reasonable or not.
+- Mention any notable trends, anomalies, or known external factors (e.g., policy changes, COVID).
 """
 
 def get_context():
@@ -127,42 +128,54 @@ def generate_commentary(sql_query, df_sample):
 # Streamlit UI
 st.title("MCP + LLM SQL Explorer")
 
+# State variables
+if 'user_sql' not in st.session_state:
+    st.session_state.user_sql = None
+if 'context' not in st.session_state:
+    st.session_state.context = None
+
 user_question = st.text_input("Ask a question about your data:")
 
-if user_question:
-    st.write("Generating SQL from your question...")
+if user_question and st.session_state.user_sql is None:
+    st.write("Generating SQL...")
     context = get_context()
-    original_sql = generate_sql(context, user_question)
+    st.session_state.context = context  # 💾 Save context
+    generated_sql = generate_sql(context, user_question)
+    st.session_state.user_sql = generated_sql
 
-    # Editable SQL area
-    st.write("You can edit the SQL query before running:")
-    sql_query = st.text_area("SQL Query", original_sql, height=200)
+# Editable SQL Section
+if st.session_state.user_sql:
+    with st.expander("Modify and Re-run SQL Query", expanded=False):
+        edited_sql = st.text_area("SQL Query", st.session_state.user_sql, height=200)
+        if st.button("Run Query"):
+            st.session_state.user_sql = edited_sql
 
-    if st.button("Run Query"):
-        st.write("Running query...")
-        result = query_mcp(sql_query)
+# Run the Query
+if st.session_state.user_sql:
+    sql_query = st.session_state.user_sql
+    result = query_mcp(sql_query)
 
-        if result.get('columns') and result.get('rows'):
-            df = pd.DataFrame(result['rows'], columns=result['columns'])
-            st.dataframe(df)
+    if result.get('columns') and result.get('rows'):
+        df = pd.DataFrame(result['rows'], columns=result['columns'])
+        st.dataframe(df)
 
-            # Plot if possible
-            if 'year' in df.columns and len(df.columns) > 1:
-                x_col = 'year'
-                y_col = [col for col in df.columns if col != 'year'][0]
+        # Plot if possible
+        if 'year' in df.columns and len(df.columns) > 1:
+            x_col = 'year'
+            y_col = [col for col in df.columns if col != 'year'][0]
 
-                fig, ax = plt.subplots()
-                ax.plot(df[x_col], df[y_col], marker='o')
-                xlabel, ylabel = get_plot_labels(context, sql_query)
-                ax.set_xlabel(xlabel)
-                ax.set_ylabel(ylabel)
-                ax.set_title(f"{ylabel} over {xlabel}")
-                ax.grid(True)
-                st.pyplot(fig)
+            fig, ax = plt.subplots()
+            ax.plot(df[x_col], df[y_col], marker='o')
+            xlabel, ylabel = get_plot_labels(st.session_state.context, sql_query)  # use session state context
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel(ylabel)
+            ax.set_title(f"{ylabel} over {xlabel}")
+            ax.grid(True)
+            st.pyplot(fig)
 
-            # Show LLM commentary
-            st.write("### LLM Commentary on Results:")
-            commentary = generate_commentary(sql_query, df.head(5))
-            st.info(commentary)
-        else:
-            st.error("No results returned.")
+        # LLM Commentary
+        st.write("### LLM Commentary on Results:")
+        commentary = generate_commentary(sql_query, df.head(5))
+        st.info(commentary)
+    else:
+        st.error("No results returned.")
