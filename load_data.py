@@ -12,7 +12,7 @@ postfix = '' #'_sample'
 nhanes_columns = [
     "SEQN",          # Respondent ID
     "MCQ010",        # Ever been told you have asthma
-    "MCQ160p",       # Ever been told you had COPD
+    "MCQ160P",       # Ever been told you had COPD
     "SMQ020",        # Smoked at least 100 cigarettes
     "SMQ040",        # Do you now smoke cigarettes
     "RIAGENDR",      # Gender
