@@ -1,0 +1,57 @@
+{
+    "name": "COPD and Environmental Public Health Data Server",
+    "description": "MCP Server providing COPD mortality, smoking, obesity, air quality data for public health analysis, stratified by demographics and across time (2018–2023).",
+    "tables": [
+      {
+        "name": "nhanes_survey",
+        "description": "NHANES 2021–2023 individual-level health survey data with demographics, smoking behavior, and asthma/COPD diagnoses.",
+        "columns": [
+          {"name": "SEQN", "description": "Respondent ID"},
+          {"name": "MCQ010", "description": "Ever been told you have asthma"},
+          {"name": "MCQ160p", "description": "Ever been told you had COPD, emphysema, or chronic bronchitis"},
+          {"name": "SMQ020", "description": "Smoked at least 100 cigarettes"},
+          {"name": "SMQ040", "description": "Do you now smoke cigarettes"},
+          {"name": "RIAGENDR", "description": "Gender"},
+          {"name": "RIDAGEYR", "description": "Age in years at screening"},
+          {"name": "RIDRETH1", "description": "Race/Hispanic origin"},
+          {"name": "HIQ011", "description": "Covered by health insurance"}
+        ]
+      },
+      {
+        "name": "wonder_mortality",
+        "description": "CDC WONDER mortality data (2018–2023) with deaths and population counts by state, year, sex, age, race, and cause of death.",
+        "columns": [
+          {"name": "state", "description": "State name"},
+          {"name": "year", "description": "Year of death"},
+          {"name": "sex", "description": "Sex"},
+          {"name": "age", "description": "Single-year age"},
+          {"name": "race", "description": "Race group"},
+          {"name": "cause_of_death", "description": "ICD-10 cause of death"},
+          {"name": "number_of_deaths", "description": "Number of deaths"},
+          {"name": "population", "description": "Population count"}
+        ]
+      },
+      {
+        "name": "places_health",
+        "description": "CDC PLACES 2022 modeled county-level estimates for COPD prevalence, smoking prevalence, and obesity prevalence.",
+        "columns": [
+          {"name": "state", "description": "State abbreviation"},
+          {"name": "county_name", "description": "County name"},
+          {"name": "fips_code", "description": "FIPS code"},
+          {"name": "copd_prevalence", "description": "Estimated COPD prevalence (%)"},
+          {"name": "smoking_prevalence", "description": "Estimated smoking prevalence (%)"},
+          {"name": "obesity_prevalence", "description": "Estimated obesity prevalence (%)"}
+        ]
+      },
+      {
+        "name": "state_air_quality",
+        "description": "EPA Air Quality Data (2018–2023) with annual mean PM2.5 concentrations (µg/m³) aggregated by state and year.",
+        "columns": [
+          {"name": "state", "description": "State name"},
+          {"name": "year", "description": "Year of air quality measurement"},
+          {"name": "pm25_annual_mean", "description": "Annual mean PM2.5 concentration (µg/m³)"}
+        ]
+      }
+    ]
+  }
+  

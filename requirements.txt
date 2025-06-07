@@ -10,3 +10,6 @@ requests
 beautifulsoup4
 tqdm
 selenium
+ipython
+ipykernel
+matplotlib
