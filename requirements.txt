@@ -13,3 +13,5 @@ selenium
 ipython
 ipykernel
 matplotlib
+streamlit
+openai

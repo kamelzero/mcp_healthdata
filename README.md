@@ -1,4 +1,8 @@
-## Install
+# Process
+
+User → LLM → SQL → MCP → Data → UI
+
+# Install
 
 ```
 curl -fsSL https://pyenv.run | bash
@@ -19,10 +23,6 @@ source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
 
-# Run
-
-```python mcp_server.py```
-
 # Obtaining Data
 
 1. EPA AQI
@@ -33,3 +33,17 @@ uv pip install -r requirements.txt
     year 2020 (through 2022 is available but just get 2020)
 4. WONDER
     year 2020
+
+# Run
+
+```python mcp_server.py```
+
+```streamlit run streamlit_app.py```
+
+
+# Examples
+
+"Show me the average PM2.5 for counties with high COPD mortality."
+
+"Show PM2.5 annual mean trends in California from 2018 to 2023."
+
