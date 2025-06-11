@@ -6,10 +6,21 @@ import streamlit as st
 import openai
 import pandas as pd
 import matplotlib.pyplot as plt
+from openai import OpenAI
+
+# Check for OpenAI API key
+if not os.getenv("OPENAI_API_KEY"):
+    st.error("Please set the OPENAI_API_KEY environment variable")
+    st.stop()
+
+try:
+    client = OpenAI()
+except Exception as e:
+    st.error(f"Failed to initialize OpenAI client: {str(e)}")
+    st.stop()
 
 # MCP and LLM settings
 MCP_SERVER = "http://localhost:8000"
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Updated SYSTEM PROMPT
 SYSTEM_PROMPT = """
@@ -20,16 +31,35 @@ You will receive:
 - Each table includes its "granularity" level (e.g., state-level, county-level, individual-level).
 - Each column may include "units" to help label plots correctly.
 
+Available Health Metrics:
+1. PLACES health data (2022 only):
+   - COPD prevalence (%)
+   - Smoking prevalence (%)
+   - Obesity prevalence (%)
+
+2. WONDER mortality (2018-2023):
+   - Respiratory deaths (ICD-10 codes J00-J99)
+   - Population counts
+   - Stratified by state, age, sex, race
+
+3. Air Quality (2018-2023):
+   - PM2.5 annual mean (µg/m³)
+   - State level only
+
+4. NHANES Survey (2022):
+   - Individual responses
+   - Asthma diagnosis (yes/no)
+   - COPD diagnosis (yes/no)
+   - Smoking status
+   - Demographics
+
 Your goals:
 1. Generate a correct SQL query based ONLY on the provided schema and the user's question.
 2. Do NOT make up table names or column names — only use those provided.
 3. NEVER join tables of different granularity without aggregation.
-4. Use sample values to match correctly. Note: For `state`, use *full state names* like 'California', 'Texas', 'New York', not abbreviations like 'CA', 'TX'.
-5. Ensure that if year is used, it's between provided min/max years.
-6. For numeric values like pm2.5 or prevalence, use appropriate filters and aggregations.
-7. When plotting:
-   - Label x-axis and y-axis based on the column names and units.
-   - If no units are provided, use sensible default labels.
+4. For state names, use full names like 'California', not abbreviations.
+5. Respect the year constraints of each dataset.
+6. For numeric values, use appropriate filters and aggregations.
 
 Respond ONLY with a SQL query inside a Markdown SQL block like:
 ```sql
@@ -73,6 +103,10 @@ def generate_sql(context, user_question):
 
     prompt = f"{SYSTEM_PROMPT}\n\nDatabase Schema:\n{schema_text}\n\nQuestion:\n{user_question}\n\nSQL:"
 
+    # Debug: Show the prompt
+    with st.expander("Debug: LLM Prompt", expanded=False):
+        st.text(prompt)
+
     response = client.chat.completions.create(
         model="gpt-4",
         messages=[
@@ -84,6 +118,10 @@ def generate_sql(context, user_question):
 
     answer = response.choices[0].message.content
 
+    # Debug: Show the raw LLM response
+    with st.expander("Debug: LLM Response", expanded=False):
+        st.text(answer)
+
     # Extract SQL from markdown block
     if "```sql" in answer:
         sql = answer.split("```sql")[1].split("```")[0].strip()
@@ -93,8 +131,26 @@ def generate_sql(context, user_question):
     return sql
 
 def query_mcp(sql):
-    response = requests.post(f"{MCP_SERVER}/v1/query", json={"query": sql})
-    return response.json()
+    """Query the MCP server with improved error handling"""
+    try:
+        # Debug: Show the SQL query
+        st.code(sql, language="sql")
+        
+        response = requests.post(f"{MCP_SERVER}/v1/query", json={"query": sql})
+        response.raise_for_status()
+        data = response.json()
+        
+        if "error" in data:
+            st.error(f"Server error: {data['error']}")
+            return None
+            
+        return data
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error querying MCP server: {str(e)}")
+        return None
+    except ValueError as e:
+        st.error(f"Error parsing server response: {str(e)}")
+        return None
 
 def get_plot_labels(context, sql_query):
     """ Try to guess labels based on selected columns """
@@ -147,7 +203,7 @@ if user_question:
     # Execute query
     result = query_mcp(sql_query)
 
-    if result.get('columns') and result.get('rows'):
+    if result and result.get('columns') and result.get('rows'):
         df = pd.DataFrame(result['rows'], columns=result['columns'])
         st.dataframe(df)
 
@@ -156,16 +212,27 @@ if user_question:
             x_col = 'year'
             y_cols = [col for col in df.columns if col != 'year' and col != 'state']
 
+            # Sort the entire dataframe by year first
+            df = df.sort_values(by='year')
+
             fig, ax = plt.subplots(figsize=(10, 6))
             
             # If we have state column, create a line for each state
             if 'state' in df.columns:
+                # If query is about PM2.5 levels, only show top 5 states
+                if 'pm25_annual_mean' in df.columns:
+                    # Calculate average PM2.5 for each state
+                    state_means = df.groupby('state')['pm25_annual_mean'].mean().sort_values(ascending=False)
+                    top_states = state_means.head(5).index
+                    df = df[df['state'].isin(top_states)]
+                    
                 for state in sorted(df['state'].unique()):
-                    state_data = df[df['state'] == state]
+                    state_data = df[df['state'] == state].sort_values(by='year')  # Sort each state's data by year
                     ax.plot(state_data[x_col], state_data[y_cols[0]], marker='o', label=state)
                 ax.legend()
             else:
                 # Single state or aggregate data
+                df = df.sort_values(by='year')  # Sort by year for single line plots too
                 ax.plot(df[x_col], df[y_cols[0]], marker='o')
 
             xlabel, ylabel = get_plot_labels(st.session_state.context, sql_query)
@@ -182,4 +249,4 @@ if user_question:
         commentary = generate_commentary(sql_query, df.head(5))
         st.info(commentary)
     else:
-        st.error("No results returned.")
+        st.error("No results returned or invalid query. Try rephrasing your question.")

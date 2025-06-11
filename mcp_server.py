@@ -118,18 +118,25 @@ async def context():
 
 @app.post("/v1/query")
 async def query(body: dict):
-    query_text = body.get("query")
-    
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
+    try:
+        query_text = body.get("query")
+        if not query_text:
+            return {"error": "No query provided"}
+        
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
 
-    cursor.execute(query_text)
-    rows = cursor.fetchall()
-    columns = [description[0] for description in cursor.description]
+        cursor.execute(query_text)
+        rows = cursor.fetchall()
+        columns = [description[0] for description in cursor.description] if cursor.description else []
 
-    conn.close()
+        conn.close()
 
-    return {
-        "columns": columns,
-        "rows": rows
-    }
+        return {
+            "columns": columns,
+            "rows": rows
+        }
+    except sqlite3.Error as e:
+        return {"error": f"Database error: {str(e)}"}
+    except Exception as e:
+        return {"error": f"Server error: {str(e)}"}
