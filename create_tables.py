@@ -12,15 +12,17 @@ cursor.execute("DROP TABLE IF EXISTS state_air_quality")
 # Create tables
 cursor.execute("""
 CREATE TABLE nhanes_survey (
-    SEQN INTEGER PRIMARY KEY,          -- Respondent ID
+    SEQN INTEGER,                      -- Respondent ID
+    year INTEGER,                      -- Survey year
     MCQ010 INTEGER,                    -- Ever been told you have asthma
-    MCQ160p INTEGER,                    -- Ever been told you had COPD
+    MCQ160p INTEGER,                   -- Ever been told you had COPD
     SMQ020 INTEGER,                    -- Smoked at least 100 cigarettes
     SMQ040 INTEGER,                    -- Do you now smoke cigarettes
-    RIAGENDR INTEGER,                   -- Gender
-    RIDAGEYR INTEGER,                   -- Age at screening
-    RIDRETH1 INTEGER,                   -- Race/Hispanic origin
-    HIQ011 INTEGER                      -- Covered by health insurance
+    RIAGENDR INTEGER,                  -- Gender
+    RIDAGEYR INTEGER,                  -- Age at screening
+    RIDRETH1 INTEGER,                  -- Race/Hispanic origin
+    HIQ011 INTEGER,                    -- Covered by health insurance
+    PRIMARY KEY (SEQN, year)
 )""")
 
 cursor.execute("""
@@ -40,10 +42,12 @@ cursor.execute("""
 CREATE TABLE places_health (
     state TEXT,                         -- State abbreviation
     county_name TEXT,                   -- County name
-    fips_code TEXT PRIMARY KEY,         -- County FIPS
+    fips_code TEXT,                     -- County FIPS
+    year INTEGER,                       -- Year of BRFSS data
     copd_prevalence FLOAT,              -- % COPD prevalence
     smoking_prevalence FLOAT,           -- % smoking prevalence
-    obesity_prevalence FLOAT            -- % obesity prevalence
+    obesity_prevalence FLOAT,           -- % obesity prevalence
+    PRIMARY KEY (fips_code, year)
 )""")
 
 cursor.execute("""

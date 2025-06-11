@@ -26,7 +26,7 @@ uv pip install -r requirements.txt
 # Obtaining Data
 
 1. EPA AQI
-    years 2020-2024
+    years 2010-2024
 2. NHANES
     years 2017-2018 (good quality), 2019-2020 (partial due to COVID)
 3. PLACES
@@ -34,10 +34,20 @@ uv pip install -r requirements.txt
 4. WONDER
     year 2020
 
+# Prepare database
+
+```
+python create_db.py
+python create_tables.py
+python load_data.py
+```
+
 # Run
 
-```python mcp_server.py```
+In one window:
+```bash run_mcp_server.sh```
 
+In a spearate window:
 ```streamlit run streamlit_app.py```
 
 

@@ -5,6 +5,9 @@ import pandas as pd
 DATA_DIR = "../../data/nhanes/nhanes_xpt_files"
 OUTFILE = "../../data/nhanes/nhanes_2021-2023_copd.parquet"
 
+# Survey year for 2021-2023 cycle
+SURVEY_YEAR = 2022  # Using middle year of the cycle
+
 FILES = {
     "DEMO": "DEMO_L.xpt",
     "SMQ": "SMQ_L.xpt",
@@ -53,6 +56,9 @@ def process():
             merged = merged.merge(df, on="SEQN", how="left")
 
     print(f"✅ Merged shape: {merged.shape}")
+
+    # Add survey year
+    merged["year"] = SURVEY_YEAR
 
     # Step 3: Add derived variables
 

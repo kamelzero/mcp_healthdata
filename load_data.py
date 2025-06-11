@@ -11,6 +11,7 @@ postfix = '' #'_sample'
 # Define expected columns - matching the simplified table schema
 nhanes_columns = [
     "SEQN",          # Respondent ID
+    "year",          # Survey year
     "MCQ010",        # Ever been told you have asthma
     "MCQ160P",       # Ever been told you had COPD
     "SMQ020",        # Smoked at least 100 cigarettes
@@ -30,6 +31,11 @@ available_columns = [col for col in nhanes_columns if col in df_nhanes.columns]
 print(f"Loading columns: {available_columns}")
 
 df_nhanes = df_nhanes[available_columns]  # Safe subset
+
+# Ensure year column exists (2022 for 2021-2023 cycle)
+if 'year' not in df_nhanes.columns:
+    df_nhanes['year'] = 2022
+
 print("NHANES data shape:", df_nhanes.shape)
 print("NHANES columns:", df_nhanes.columns.tolist())
 
@@ -143,28 +149,31 @@ obesity_df = pd.DataFrame({
     'state': obesity['StateAbbr'],
     'county_name': obesity['LocationName'],
     'fips_code': obesity['LocationID'].astype(str),
+    'year': 2022,  # 2024 release uses 2022 BRFSS data
     'obesity_prevalence': obesity['Data_Value']
 })
 
 smoking_df = pd.DataFrame({
     'fips_code': smoking['LocationID'].astype(str),
+    'year': 2022,
     'smoking_prevalence': smoking['Data_Value']
 })
 
 copd_df = pd.DataFrame({
     'fips_code': copd['LocationID'].astype(str),
+    'year': 2022,
     'copd_prevalence': copd['Data_Value']
 })
 
 # Merge all measures together
 places_processed = obesity_df.merge(
-    smoking_df, on='fips_code', how='left'
+    smoking_df[['fips_code', 'smoking_prevalence']], on='fips_code', how='left'
 ).merge(
-    copd_df, on='fips_code', how='left'
+    copd_df[['fips_code', 'copd_prevalence']], on='fips_code', how='left'
 )
 
 # Remove duplicates after merging
-places_processed = places_processed.drop_duplicates(subset=['fips_code'], keep='first')
+places_processed = places_processed.drop_duplicates(subset=['fips_code', 'year'], keep='first')
 
 print("\nFinal PLACES data shape:", places_processed.shape)
 print("Sample of processed data:")
