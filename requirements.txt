@@ -16,3 +16,4 @@ matplotlib
 streamlit
 openai
 tabulate
+seaborn

@@ -128,31 +128,23 @@ def generate_commentary(sql_query, df_sample):
 # Streamlit UI
 st.title("MCP + LLM SQL Explorer")
 
-# State variables
-if 'user_sql' not in st.session_state:
-    st.session_state.user_sql = None
+# Initialize session state for context
 if 'context' not in st.session_state:
-    st.session_state.context = None
+    st.session_state.context = get_context()
 
+# Get user question
 user_question = st.text_input("Ask a question about your data:")
 
-if user_question and st.session_state.user_sql is None:
-    st.write("Generating SQL...")
-    context = get_context()
-    st.session_state.context = context  # 💾 Save context
-    generated_sql = generate_sql(context, user_question)
-    st.session_state.user_sql = generated_sql
-
-# Editable SQL Section
-if st.session_state.user_sql:
+if user_question:
+    # Generate SQL
+    generated_sql = generate_sql(st.session_state.context, user_question)
+    
+    # Show editable SQL
     with st.expander("Modify and Re-run SQL Query", expanded=False):
-        edited_sql = st.text_area("SQL Query", st.session_state.user_sql, height=200)
-        if st.button("Run Query"):
-            st.session_state.user_sql = edited_sql
+        sql_query = st.text_area("SQL Query", generated_sql, height=200)
+        run_button = st.button("Run Query")
 
-# Run the Query
-if st.session_state.user_sql:
-    sql_query = st.session_state.user_sql
+    # Execute query
     result = query_mcp(sql_query)
 
     if result.get('columns') and result.get('rows'):
@@ -162,15 +154,27 @@ if st.session_state.user_sql:
         # Plot if possible
         if 'year' in df.columns and len(df.columns) > 1:
             x_col = 'year'
-            y_col = [col for col in df.columns if col != 'year'][0]
+            y_cols = [col for col in df.columns if col != 'year' and col != 'state']
 
-            fig, ax = plt.subplots()
-            ax.plot(df[x_col], df[y_col], marker='o')
-            xlabel, ylabel = get_plot_labels(st.session_state.context, sql_query)  # use session state context
+            fig, ax = plt.subplots(figsize=(10, 6))
+            
+            # If we have state column, create a line for each state
+            if 'state' in df.columns:
+                for state in sorted(df['state'].unique()):
+                    state_data = df[df['state'] == state]
+                    ax.plot(state_data[x_col], state_data[y_cols[0]], marker='o', label=state)
+                ax.legend()
+            else:
+                # Single state or aggregate data
+                ax.plot(df[x_col], df[y_cols[0]], marker='o')
+
+            xlabel, ylabel = get_plot_labels(st.session_state.context, sql_query)
             ax.set_xlabel(xlabel)
             ax.set_ylabel(ylabel)
             ax.set_title(f"{ylabel} over {xlabel}")
             ax.grid(True)
+            plt.xticks(rotation=45)
+            plt.tight_layout()
             st.pyplot(fig)
 
         # LLM Commentary
