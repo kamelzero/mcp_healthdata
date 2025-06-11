@@ -103,10 +103,6 @@ def generate_sql(context, user_question):
 
     prompt = f"{SYSTEM_PROMPT}\n\nDatabase Schema:\n{schema_text}\n\nQuestion:\n{user_question}\n\nSQL:"
 
-    # Debug: Show the prompt
-    with st.expander("Debug: LLM Prompt", expanded=False):
-        st.text(prompt)
-
     response = client.chat.completions.create(
         model="gpt-4",
         messages=[
@@ -117,10 +113,6 @@ def generate_sql(context, user_question):
     )
 
     answer = response.choices[0].message.content
-
-    # Debug: Show the raw LLM response
-    with st.expander("Debug: LLM Response", expanded=False):
-        st.text(answer)
 
     # Extract SQL from markdown block
     if "```sql" in answer:
@@ -133,9 +125,6 @@ def generate_sql(context, user_question):
 def query_mcp(sql):
     """Query the MCP server with improved error handling"""
     try:
-        # Debug: Show the SQL query
-        st.code(sql, language="sql")
-        
         response = requests.post(f"{MCP_SERVER}/v1/query", json={"query": sql})
         response.raise_for_status()
         data = response.json()
@@ -182,23 +171,50 @@ def generate_commentary(sql_query, df_sample):
     return response.choices[0].message.content.strip()
 
 # Streamlit UI
-st.title("MCP + LLM SQL Explorer")
+st.title("Public Health Data Explorer")
 
 # Initialize session state for context
 if 'context' not in st.session_state:
     st.session_state.context = get_context()
 
-# Get user question
-user_question = st.text_input("Ask a question about your data:")
+# Preset questions
+preset_questions = [
+    "Select a question...",
+    "Compare PM2.5 levels between California and New York from 2018 to 2022",
+    "Show the top 10 states with highest respiratory mortality in 2022",
+    "Compare COPD prevalence across all counties in 2022",
+    "Show PM2.5 annual mean trends in California from 2018 to 2023",
+    "Show the annual trend of PM2.5 levels in states with the highest air pollution from 2018 to 2022"
+]
+
+# Create two columns for the input section
+col1, col2 = st.columns([2, 1])
+
+with col1:
+    selected_question = st.selectbox(
+        "Choose a preset question or type your own below:",
+        preset_questions,
+        key="preset_question"
+    )
+
+with col2:
+    st.write("")  # Add some spacing
+    use_custom = st.checkbox("Use custom question", key="use_custom")
+
+if use_custom:
+    user_question = st.text_input("Enter your custom question:", key="custom_question")
+else:
+    user_question = selected_question if selected_question != "Select a question..." else ""
 
 if user_question:
     # Generate SQL
     generated_sql = generate_sql(st.session_state.context, user_question)
     
     # Show editable SQL
-    with st.expander("Modify and Re-run SQL Query", expanded=False):
-        sql_query = st.text_area("SQL Query", generated_sql, height=200)
-        run_button = st.button("Run Query")
+    with st.expander("View or Modify SQL Query", expanded=False):
+        st.code(generated_sql, language="sql")
+        sql_query = st.text_area("Modify SQL Query:", generated_sql, height=200)
+        run_button = st.button("Run Modified Query")
 
     # Execute query
     result = query_mcp(sql_query)
@@ -245,7 +261,7 @@ if user_question:
             st.pyplot(fig)
 
         # LLM Commentary
-        st.write("### LLM Commentary on Results:")
+        st.write("### Analysis:")
         commentary = generate_commentary(sql_query, df.head(5))
         st.info(commentary)
     else:
