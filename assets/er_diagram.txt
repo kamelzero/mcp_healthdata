@@ -1,0 +1,56 @@
+%%{init: {
+  'theme': 'default',
+  'themeVariables': { 
+    'background': '#ffffff',
+    'primaryColor': '#fff',
+    'primaryTextColor': '#000',
+    'primaryBorderColor': '#000',
+    'lineColor': '#000',
+    'secondaryColor': '#fff',
+    'tertiaryColor': '#fff'
+  }
+}}%%
+erDiagram
+    wonder_mortality {
+        string state PK "State identifier"
+        int year PK "Years 2018-2023"
+        string sex PK "Demographic - sex"
+        string age PK "Demographic - age group"
+        string race PK "Demographic - race"
+        string cause_of_death PK "Cause of mortality"
+        int number_of_deaths "Death count"
+        int population "Population size"
+    }
+    
+    places_health {
+        string state "State identifier"
+        string county_name "County name"
+        string fips_code PK "FIPS location code"
+        int year PK "2022 (2024 release)"
+        float copd_prevalence "COPD prevalence rate"
+        float smoking_prevalence "Smoking prevalence rate"
+        float obesity_prevalence "Obesity prevalence rate"
+    }
+    
+    state_air_quality {
+        string state PK "State identifier"
+        int year PK "Years 2010-2024"
+        float pm25_annual_mean "PM2.5 annual mean measurements"
+    }
+    
+    nhanes_survey {
+        int SEQN PK "Sequence number"
+        int year PK "2022 (2021-2023 cycle)"
+        int MCQ010 "Survey response code"
+        int MCQ160p "Survey response code"
+        int SMQ020 "Survey response code"
+        int SMQ040 "Survey response code"
+        int RIAGENDER "Survey response code"
+        int RIDAGEYR "Survey response code"
+        int RIDRETH1 "Survey response code"
+        int HIQ011 "Survey response code"
+    }
+
+    wonder_mortality ||--o{ places_health : "state, year"
+    wonder_mortality ||--o{ state_air_quality : "state, year"
+    wonder_mortality ||--o{ nhanes_survey : "year"
